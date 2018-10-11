@@ -18,23 +18,28 @@ from RoboschoolHumanoidFlagrun_v1_2017jul import ZooPolicyTensorflow as PolHuman
 from RoboschoolAnt_v1_2017jul   import ZooPolicyTensorflow as PolAnt
 # HumanoidFlagrun is compatible with normal Humanoid in observations and actions.
 
+
 possible_participants = [
      ("RoboschoolAnt-v1", PolAnt),
-   # ("RoboschoolHopper-v1",   PolHopper),
- #   ("RoboschoolWalker2d-v1", PolWalker),
-  #  ("RoboschoolHalfCheetah-v1", PolHalfCheetah),
-  #  ("RoboschoolHumanoid-v1", PolHumanoid1),
-  #  ("RoboschoolHumanoid-v1", PolHumanoid2),
     ]
 
-stadium = roboschool.scene_stadium.MultiplayerStadiumScene(gravity=9.8, timestep=0.0165/4, frame_skip=4)
+
+# individual = ("RoboschoolAnt-v1", PolAnt),
+# stadium = roboschool.scene_stadium.MultiplayerStadiumScene(gravity=9.8, timestep=0.0165/4, frame_skip=4)
+stadium = roboschool.scene_stadium.SinglePlayerStadiumScene(gravity=9.8, timestep=0.0165/4, frame_skip=4)
+
+# Place Ant in the center of the stadium
 stadium.zero_at_running_strip_start_line = False
+
+
+
 # This example shows inner workings of multiplayer scene, how you can run
 # several robots in one process.
 
 participants = []
 for lane in range(1):
     env_id, PolicyClass = possible_participants[ np.random.randint(len(possible_participants)) ]
+    # env_id, PolicyClass = individual
     env = gym.make(env_id)
     env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
     env.unwrapped.player_n = lane   # mutliplayer scenes will also use player_n
@@ -43,7 +48,10 @@ for lane in range(1):
 
 episode_n = 0
 video = False
-while 1:
+inProgress = True
+
+
+while inProgress:
     stadium.episode_restart()
     episode_n += 1
 
@@ -73,7 +81,9 @@ while 1:
         frame += 1
         stadium.cpp_world.test_window_score("%04i" % frame)
         if not still_open: break
-        if frame==1000: break
+        if frame==100:
+            inProgress = False
+            break
     if video: video_recorder.close()
     if not still_open: break
 

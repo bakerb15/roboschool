@@ -23,10 +23,13 @@ class ZooPolicyTensorflow(object):
             dense1_b = tf.get_variable("dense1_b", [128])
             x = tf.matmul(x, dense1_w) + dense1_b
             x = tf.nn.relu(x)
+            #x = tf.nn.sigmoid(x)
             dense2_w = tf.get_variable("dense2_w", [128,64])
             dense2_b = tf.get_variable("dense2_b", [64])
             x = tf.matmul(x, dense2_w) + dense2_b
             x = tf.nn.relu(x)
+            #x = tf.nn.sigmoid(x)
+            #x = tf.nn.tanh(x)
             final_w = tf.get_variable("final_w", [64,8])
             final_b = tf.get_variable("final_b", [8])
             x = tf.matmul(x, final_w) + final_b
