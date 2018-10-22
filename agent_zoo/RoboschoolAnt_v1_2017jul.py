@@ -8,7 +8,8 @@ class ZooPolicyTensorflow(object):
     def __init__(self, name, ob_space, ac_space, take_weights_here=None):
         self.name = name
 
-        with tf.variable_scope(name):
+        #had to add reuse=True to be able to reload weights
+        with tf.variable_scope(name, reuse=tf.AUTO_REUSE):
             obs_tuple = [
                 tf.placeholder(tf.float32,         (None, 1), name="obs0"),
                 tf.placeholder(tf.float32,        (None, 28), name="obs1"),
