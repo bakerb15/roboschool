@@ -65,7 +65,7 @@ for id, dna in population:
         restart_delay = 0
         if video: video_recorder = gym.monitoring.video_recorder.VideoRecorder(env=participants[0][0], base_path=("/tmp/demo_race_episode%i" % episode_n), enabled=True)
         while 1:
-            #still_open = stadium.test_window()
+            still_open = stadium.test_window()
             multi_action = [pi.act(s, None) for s, (env, pi) in zip(multi_state, participants)]
 
             for a, (env, pi) in zip(multi_action, participants):
@@ -85,14 +85,14 @@ for id, dna in population:
 
             frame += 1
             stadium.cpp_world.test_window_score("%04i" % frame)
-            #if not still_open: break
+            if not still_open: break
             if frame == 50:
                 inProgress = False
                 fitness = participants[0][0].unwrapped.body_xyz
                 results.append((id, fitness))
                 break
         if video: video_recorder.close()
-        #if not still_open: break
+        if not still_open: break
 
 results = sorted(results, key=lambda x: x[1][0])
 for item in results:
