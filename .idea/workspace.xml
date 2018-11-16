@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9010b8-6985-42d3-8661-f3a91acd01af" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/bradley.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py" afterPath="$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,7 +14,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/roboschool$demo_race2.coverage" NAME="demo_race2 Coverage Results" MODIFIED="1539214926423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$BradExperiment1.coverage" NAME="BradExperiment1 Coverage Results" MODIFIED="1542053962890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
-    <SUITE FILE_PATH="coverage/roboschool$EvolutionExperiment2.coverage" NAME="EvolutionExperiment2 Coverage Results" MODIFIED="1542241277393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
+    <SUITE FILE_PATH="coverage/roboschool$EvolutionExperiment2.coverage" NAME="EvolutionExperiment2 Coverage Results" MODIFIED="1542336510197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$AdjustWeights.coverage" NAME="AdjustWeights Coverage Results" MODIFIED="1539638529713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$RoboschoolAnt_v1_2017jul.coverage" NAME="RoboschoolAnt_v1_2017jul Coverage Results" MODIFIED="1539211195980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$CreateFunctions.coverage" NAME="CreateFunctions Coverage Results" MODIFIED="1542237755500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
@@ -39,12 +37,13 @@
       <file leaf-file-name="BradExperiment1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent_zoo/BradExperiment1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-859">
+            <state relative-caret-position="-369">
               <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#1449#1522#0" expanded="false" />
                 <element signature="e#1639#2030#0" expanded="false" />
+                <element signature="e#2477#3549#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,8 +52,8 @@
       <file leaf-file-name="AdjustWeights.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent_zoo/AdjustWeights.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="31" />
+            <state relative-caret-position="114">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="42" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -65,11 +64,12 @@
       <file leaf-file-name="EvolutionExperiment2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-41">
-              <caret line="43" column="24" lean-forward="false" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+            <state relative-caret-position="132">
+              <caret line="75" column="51" lean-forward="true" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#296#531#0" expanded="false" />
+                <element signature="e#297#532#0" expanded="false" />
+                <element signature="e#660#756#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -88,7 +88,7 @@
       <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/env/lib/python3.5/codecs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
+            <state relative-caret-position="92">
               <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
               <folding />
             </state>
@@ -316,7 +316,7 @@
       <module name="roboschool" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py" />
-      <option name="PARAMETERS" value="12 20 10" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
@@ -507,12 +507,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3003413" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3003413" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31569967" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26450512" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4317406" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -564,6 +564,11 @@
           <line>23</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -572,7 +577,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="45" />
+      <option name="time" value="46" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -643,6 +648,7 @@
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1449#1522#0" expanded="false" />
             <element signature="e#1639#2030#0" expanded="false" />
+            <element signature="e#2477#3549#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -707,6 +713,7 @@
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1449#1522#0" expanded="false" />
             <element signature="e#1639#2030#0" expanded="false" />
+            <element signature="e#2477#3549#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -771,6 +778,7 @@
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1449#1522#0" expanded="false" />
             <element signature="e#1639#2030#0" expanded="false" />
+            <element signature="e#2477#3549#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -832,6 +840,7 @@
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1449#1522#0" expanded="false" />
             <element signature="e#1639#2030#0" expanded="false" />
+            <element signature="e#2477#3549#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -893,6 +902,7 @@
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1449#1522#0" expanded="false" />
             <element signature="e#1639#2030#0" expanded="false" />
+            <element signature="e#2477#3549#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -985,14 +995,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/env/lib/python3.5/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/env/lib/python3.5/site-packages/deap/tools/init.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
@@ -1003,33 +1005,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/agent_zoo/BradExperiment1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-859">
+        <state relative-caret-position="-369">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#1449#1522#0" expanded="false" />
             <element signature="e#1639#2030#0" expanded="false" />
+            <element signature="e#2477#3549#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/agent_zoo/AdjustWeights.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="31" />
+        <state relative-caret-position="114">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="42" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/env/lib/python3.5/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="43" column="24" lean-forward="false" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+        <state relative-caret-position="132">
+          <caret line="75" column="51" lean-forward="true" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#296#531#0" expanded="false" />
+            <element signature="e#297#532#0" expanded="false" />
+            <element signature="e#660#756#0" expanded="false" />
           </folding>
         </state>
       </provider>
