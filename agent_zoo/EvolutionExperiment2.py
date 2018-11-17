@@ -4,7 +4,7 @@ import time
 import copy
 import numpy
 
-from agent_zoo.Eval import evaluate_individual
+from agent_zoo.Eval import Eval
 
 class Individual(object):
 
@@ -89,8 +89,8 @@ def generate_genome(genome_size):
 
 def main():
     seed = 12
-    genome_size = 1000000
-    MAX_GEN = 25
+    genome_size = 100
+    MAX_GEN = 10
     selectionRate = 0.55
     IND_SIZE = 12488
     MAX_POPULATION = 50
@@ -129,12 +129,13 @@ def main():
     population = [Individual(genome, IND_SIZE, original, weight_map) for i in range(MAX_POPULATION)]
     #evaluate each individual in the initial population
 
-    base_indiv_fitness = evaluate_individual(original)
+    # base_indiv_fitness = evaluate_individual(original)
     with open('evolutionExperiment2.results', 'w') as writer:
         with open('evolutionExperiment2.timing', 'w') as writer_timing:
             writer.write('generation, top_fitness\n')
             writer_timing.write('generation, eval_time, sort_tim, mutation_time, gen_time, avg_get_weight, avg_eval\n')
             print('Starting evolution')
+            worker = Eval()
             for generation in range(MAX_GEN):
                 start = time.process_time()
                 total_time_get_weights = 0
@@ -145,7 +146,7 @@ def main():
                         w = indiv.get_weights()
                         total_time_get_weights += time.process_time() - start_get_weight
                         start_eval = time.process_time()
-                        indiv.fitness = evaluate_individual(w)
+                        indiv.fitness = worker.evaluate_individual(w)
                         total_time_eval += time.process_time() - start_eval
                 avg_get_weight = total_time_get_weights/ len(population)
                 avg_eval = total_time_eval/ len(population)
