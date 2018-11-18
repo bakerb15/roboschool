@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9010b8-6985-42d3-8661-f3a91acd01af" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/agent_zoo/evalLog.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/Eval.py" afterPath="$PROJECT_DIR$/agent_zoo/Eval.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py" afterPath="$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/RoboschoolAnt_v1_2017jul.py" afterPath="$PROJECT_DIR$/agent_zoo/RoboschoolAnt_v1_2017jul.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/evolutionExperiment2.timing" afterPath="$PROJECT_DIR$/agent_zoo/evolutionExperiment2.timing" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results.csv" afterPath="$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/evolutionExperiment2.timing.csv" afterPath="$PROJECT_DIR$/agent_zoo/evolutionExperiment2.timing.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent_zoo/logEval.csv" afterPath="$PROJECT_DIR$/agent_zoo/logEval.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +19,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/roboschool$demo_race2.coverage" NAME="demo_race2 Coverage Results" MODIFIED="1539214926423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$BradExperiment1.coverage" NAME="BradExperiment1 Coverage Results" MODIFIED="1542053962890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
-    <SUITE FILE_PATH="coverage/roboschool$EvolutionExperiment2.coverage" NAME="EvolutionExperiment2 Coverage Results" MODIFIED="1542518920725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
+    <SUITE FILE_PATH="coverage/roboschool$EvolutionExperiment2.coverage" NAME="EvolutionExperiment2 Coverage Results" MODIFIED="1542563096808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$AdjustWeights.coverage" NAME="AdjustWeights Coverage Results" MODIFIED="1539638529713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$RoboschoolAnt_v1_2017jul.coverage" NAME="RoboschoolAnt_v1_2017jul Coverage Results" MODIFIED="1539211195980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
     <SUITE FILE_PATH="coverage/roboschool$CreateFunctions.coverage" NAME="CreateFunctions Coverage Results" MODIFIED="1542237755500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/agent_zoo" />
@@ -40,8 +39,8 @@
       <file leaf-file-name="EvolutionExperiment2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+            <state relative-caret-position="-1055">
+              <caret line="89" column="11" lean-forward="true" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#1744#1847#0" expanded="false" />
@@ -52,24 +51,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoboschoolAnt_v1_2017jul.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/agent_zoo/RoboschoolAnt_v1_2017jul.py">
+      <file leaf-file-name="BradExperiment1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agent_zoo/BradExperiment1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="67" column="37" lean-forward="false" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+            <state relative-caret-position="560">
+              <caret line="83" column="21" lean-forward="true" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
               <folding>
-                <element signature="e#3324#4366#0" expanded="false" />
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#1449#1522#0" expanded="false" />
+                <element signature="e#1639#2030#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/env/lib/python3.5/site-packages/tensorflow/python/client/session.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="895" column="0" lean-forward="false" selection-start-line="895" selection-start-column="0" selection-end-line="895" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -77,11 +68,41 @@
       <file leaf-file-name="Eval.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/agent_zoo/Eval.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
-              <caret line="66" column="54" lean-forward="false" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="54" />
+            <state relative-caret-position="304">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoboschoolAnt_v1_2017jul.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agent_zoo/RoboschoolAnt_v1_2017jul.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/env/lib/python3.5/site-packages/tensorflow/python/client/session.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17440">
+              <caret line="895" column="0" lean-forward="false" selection-start-line="895" selection-start-column="0" selection-end-line="895" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logEval.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agent_zoo/logEval.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-26">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,9 +149,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-1" />
-    <option name="y" value="28" />
-    <option name="width" value="1368" />
-    <option name="height" value="713" />
+    <option name="width" value="1922" />
+    <option name="height" value="1081" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -147,6 +167,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -175,7 +196,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -476,20 +496,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="28" width="1368" height="713" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1" y="0" width="1922" height="1081" extended-state="6" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21291356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20230608" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32593855" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26939204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2977273" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31911263" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26791808" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3186583" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -497,6 +515,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -541,9 +560,14 @@
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/agent_zoo/RoboschoolAnt_v1_2017jul.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="64" />
+          <url>file://$PROJECT_DIR$/agent_zoo/BradExperiment1.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/agent_zoo/Eval.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -556,7 +580,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="65" />
+      <option name="time" value="68" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -618,7 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="26" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -679,7 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="26" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="26" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -796,7 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4300">
           <caret line="215" column="18" lean-forward="false" selection-start-line="215" selection-start-column="18" selection-end-line="215" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -851,7 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,18 +888,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="3" column="39" lean-forward="false" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results1" />
     <entry file="file://$PROJECT_DIR$/agent_zoo/demo_race2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-438">
@@ -906,62 +917,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="82" lean-forward="true" selection-start-line="0" selection-start-column="82" selection-end-line="0" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agent_zoo/Eval.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agent_zoo/BradExperiment1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="58" column="4" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#1449#1522#0" expanded="false" />
-            <element signature="e#1639#2030#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agent_zoo/evolutionExperiment2.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="201" column="42" lean-forward="true" selection-start-line="201" selection-start-column="42" selection-end-line="201" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agent_zoo/evalLog.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agent_zoo/logEval.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-72">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/agent_zoo/Eval.log" />
+    <entry file="file://$PROJECT_DIR$/agent_zoo/evolutionExperiment2.csv" />
+    <entry file="file://$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results" />
+    <entry file="file://$PROJECT_DIR$/agent_zoo/evalLog.csv" />
     <entry file="file://$PROJECT_DIR$/agent_zoo/evolutionExperiment2.results.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -978,10 +940,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/env/lib/python3.5/site-packages/tensorflow/python/client/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17440">
+          <caret line="895" column="0" lean-forward="false" selection-start-line="895" selection-start-column="0" selection-end-line="895" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agent_zoo/logEval.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-26">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/agent_zoo/EvolutionExperiment2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+        <state relative-caret-position="-1055">
+          <caret line="89" column="11" lean-forward="true" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#1744#1847#0" expanded="false" />
@@ -991,28 +969,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/env/lib/python3.5/site-packages/tensorflow/python/client/session.py">
+    <entry file="file://$PROJECT_DIR$/agent_zoo/BradExperiment1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="895" column="0" lean-forward="false" selection-start-line="895" selection-start-column="0" selection-end-line="895" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="560">
+          <caret line="83" column="21" lean-forward="true" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#1449#1522#0" expanded="false" />
+            <element signature="e#1639#2030#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/agent_zoo/RoboschoolAnt_v1_2017jul.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="67" column="37" lean-forward="false" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
-          <folding>
-            <element signature="e#3324#4366#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="198">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/agent_zoo/Eval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="66" column="54" lean-forward="false" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="54" />
+        <state relative-caret-position="304">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
