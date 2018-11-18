@@ -44,7 +44,28 @@ class Individual(object):
                         self.weights[layer][dim1][dim2] = f(self.weights[layer][dim1][dim2])
                 self.recalc_weight[i] = False
 
+# returns a list individuals that have been selected
+def select_parents(population, selection_rate):
+    total_fitness = 0
+    for indiv in population:
+        if indiv.fitness is not None:
+            total_fitness += indiv.fitness
+    selected = []
 
+    # create a random list of indices
+    order = [i for i in range(len(population))]
+    random.shuffle(order)
+    how_many = int(selection_rate * len(population))
+    index = 0
+    while len(selected) < how_many:
+        indiv = population[order[index]]
+        if (indiv.fitness / total_fitness) > random.random():
+            selected.append(indiv)
+        index += 1
+        if index > (len(population) -1):
+            index = 0
+
+    return selected
 
 # Genome is a list of functions
 def random_gene(genome):
@@ -122,16 +143,16 @@ def main():
                     weight_map.append((layer, i, j))
                     index += 1
 
-
-
-
     #generate initial population
     population = [Individual(genome, IND_SIZE, original, weight_map) for i in range(MAX_POPULATION)]
     #evaluate each individual in the initial population
 
+
+    hall_of_fame = []
+
     # base_indiv_fitness = evaluate_individual(original)
-    with open('evolutionExperiment2.results.csv', 'w') as writer:
-        with open('evolutionExperiment2.timing.csv', 'w') as writer_timing:
+    with open('results.csv', 'w') as writer:
+        with open('timing.csv', 'w') as writer_timing:
             with open('logEval.csv', 'w') as logger:
                 logger.write('time\n')
                 writer.write('generation, top_fitness\n')
@@ -139,49 +160,33 @@ def main():
                 print('Starting evolution')
 
                 for generation in range(MAX_GEN):
-                    start = time.process_time()
-                    total_time_get_weights = 0
-                    total_time_eval = 0
                     for indiv in population:
                         if indiv.fitness is None:
-                            start_get_weight = time.process_time()
                             indiv.get_weights()
-                            total_time_get_weights += time.process_time() - start_get_weight
-                            start_eval = time.process_time()
-                            worker = Eval()
-                            indiv.fitness = worker.evaluate_individual(indiv.weights, logger)
-
-                            total_time_eval += time.process_time() - start_eval
-                    avg_get_weight = total_time_get_weights/ len(population)
-                    avg_eval = total_time_eval/ len(population)
-                    end_eval = time.process_time()
-
-                    population = sorted(population, key=lambda x: x.fitness)
-                    end_sort = time.process_time()
-                    writer.write('{}, {}\n'.format(generation, population[0].fitness))
-                    for indiv in population:
-                        mutate(indiv)
-                    end_mutation = time.process_time()
-
-                    eval_time = end_eval - start
-                    sort_time = end_sort - end_eval
-                    mutation_time = end_mutation - end_sort
-                    gen_time = end_mutation - start
-                    timing_str = '{}, {}, {}, {}, {}, {}, {}'.format(
-                        generation, eval_time, sort_time, mutation_time, gen_time, avg_get_weight, avg_eval)
-                    print(timing_str)
-                    writer_timing.write(timing_str + '\n')
-
-
+                            indiv.fitness = Eval().evaluate_individual(indiv.weights, logger)
                     #select individuals for reproduction
-
+                    selected = select_parents(population, CROSSOVER_RATE)
                     #generate children
-
+                    children = mate(selected)
                     #select children for mutation
+                    for child in children:
+                        if MUTATION_RATE > random.random():
+                            mutate(child)
 
-                    #evaluate individuals with no fitness
+                    #evaluate children
+                    for child in children:
+                        if child.fitness is None:
+                            child.get_weights()
+                            child.fitness = Eval().evaluate_individual(child.weights, logger)
 
                     #select survivors
+
+
+                    # population = sorted(population, key=lambda x: x.fitness)
+
+
+
+
 
 if __name__ == '__main__':
     main()
