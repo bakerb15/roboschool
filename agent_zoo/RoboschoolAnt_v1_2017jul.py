@@ -2,10 +2,11 @@ import os.path, gym
 import numpy as np
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
+import time
 import roboschool
 
 class ZooPolicyTensorflow(object):
-    def __init__(self, name, ob_space, ac_space, take_weights_here=None):
+    def __init__(self, name, ob_space, ac_space, sess, take_weights_here=None):
         self.name = name
 
         #had to add reuse=True to be able to reload weights
@@ -56,19 +57,25 @@ class ZooPolicyTensorflow(object):
             self.weight_assignment_placeholders.append(ph)
             self.weight_assignment_nodes.append( tf.assign(var, ph) )
 
-        self.load_weights()
+        self.load_weights(sess)
 
-    def load_weights(self):
+    def load_weights(self, sess):
         feed_dict = {}
         for (var, w), ph in zip(self.assigns, self.weight_assignment_placeholders):
             feed_dict[ph] = w
-        tf.get_default_session().run(self.weight_assignment_nodes, feed_dict=feed_dict)
+        #tf.get_default_session().run(self.weight_assignment_nodes, feed_dict=feed_dict)
+        sess.run(self.weight_assignment_nodes, feed_dict=feed_dict)
 
-    def act(self, obs_data, cx):
+    def act(self, obs_data, cx, sess, logger=None):
         obs_data = [np.ones((1,)), obs_data]
         obs_data = [obs_data[0], obs_data[1]]
         # Because we need batch dimension, data[None] changes shape from [A] to [1,A]
-        a = tf.get_default_session().run(self.pi, feed_dict=dict( (ph,data[None]) for ph,data in zip(self.obs_tuple, obs_data) ))
+        start = time.process_time()
+        #a = tf.get_default_session().run(self.pi, feed_dict=dict( (ph,data[None]) for ph,data in zip(self.obs_tuple, obs_data) ))
+        a = sess.run(self.pi,feed_dict=dict((ph, data[None]) for ph, data in zip(self.obs_tuple, obs_data)))
+        end = time.process_time()
+        if logger is not None:
+            logger.write('{}\n'.format(end - start))
         return a[0]  # return first in batch
 
 

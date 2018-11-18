@@ -90,10 +90,10 @@ def generate_genome(genome_size):
 def main():
     seed = 12
     genome_size = 100
-    MAX_GEN = 10
+    MAX_GEN = 200
     selectionRate = 0.55
     IND_SIZE = 12488
-    MAX_POPULATION = 50
+    MAX_POPULATION = 1
     MUTATION_RATE = .35
     CROSSOVER_RATE = .35
 
@@ -130,54 +130,58 @@ def main():
     #evaluate each individual in the initial population
 
     # base_indiv_fitness = evaluate_individual(original)
-    with open('evolutionExperiment2.results', 'w') as writer:
-        with open('evolutionExperiment2.timing', 'w') as writer_timing:
-            writer.write('generation, top_fitness\n')
-            writer_timing.write('generation, eval_time, sort_tim, mutation_time, gen_time, avg_get_weight, avg_eval\n')
-            print('Starting evolution')
-            worker = Eval()
-            for generation in range(MAX_GEN):
-                start = time.process_time()
-                total_time_get_weights = 0
-                total_time_eval = 0
-                for indiv in population:
-                    if indiv.fitness is None:
-                        start_get_weight = time.process_time()
-                        w = indiv.get_weights()
-                        total_time_get_weights += time.process_time() - start_get_weight
-                        start_eval = time.process_time()
-                        indiv.fitness = worker.evaluate_individual(w)
-                        total_time_eval += time.process_time() - start_eval
-                avg_get_weight = total_time_get_weights/ len(population)
-                avg_eval = total_time_eval/ len(population)
-                end_eval = time.process_time()
+    with open('evolutionExperiment2.results.csv', 'w') as writer:
+        with open('evolutionExperiment2.timing.csv', 'w') as writer_timing:
+            with open('logEval.csv', 'w') as logger:
+                logger.write('time\n')
+                writer.write('generation, top_fitness\n')
+                writer_timing.write('generation, eval_time, sort_tim, mutation_time, gen_time, avg_get_weight, avg_eval\n')
+                print('Starting evolution')
 
-                population = sorted(population, key=lambda x: x.fitness)
-                end_sort = time.process_time()
-                writer.write('{}, {}\n'.format(generation, population[0].fitness))
-                for indiv in population:
-                    mutate(indiv)
-                end_mutation = time.process_time()
+                for generation in range(MAX_GEN):
+                    start = time.process_time()
+                    total_time_get_weights = 0
+                    total_time_eval = 0
+                    for indiv in population:
+                        if indiv.fitness is None:
+                            start_get_weight = time.process_time()
+                            indiv.get_weights()
+                            total_time_get_weights += time.process_time() - start_get_weight
+                            start_eval = time.process_time()
+                            worker = Eval()
+                            indiv.fitness = worker.evaluate_individual(indiv.weights, logger)
 
-                eval_time = end_eval - start
-                sort_time = end_sort - end_eval
-                mutation_time = end_mutation - end_sort
-                gen_time = end_mutation - start
-                timing_str = '{}, {}, {}, {}, {}, {}, {}'.format(
-                    generation, eval_time, sort_time, mutation_time, gen_time, avg_get_weight, avg_eval)
-                print(timing_str)
-                writer_timing.write(timing_str + '\n')
+                            total_time_eval += time.process_time() - start_eval
+                    avg_get_weight = total_time_get_weights/ len(population)
+                    avg_eval = total_time_eval/ len(population)
+                    end_eval = time.process_time()
+
+                    population = sorted(population, key=lambda x: x.fitness)
+                    end_sort = time.process_time()
+                    writer.write('{}, {}\n'.format(generation, population[0].fitness))
+                    for indiv in population:
+                        mutate(indiv)
+                    end_mutation = time.process_time()
+
+                    eval_time = end_eval - start
+                    sort_time = end_sort - end_eval
+                    mutation_time = end_mutation - end_sort
+                    gen_time = end_mutation - start
+                    timing_str = '{}, {}, {}, {}, {}, {}, {}'.format(
+                        generation, eval_time, sort_time, mutation_time, gen_time, avg_get_weight, avg_eval)
+                    print(timing_str)
+                    writer_timing.write(timing_str + '\n')
 
 
-                #select individuals for reproduction
+                    #select individuals for reproduction
 
-                #generate children
+                    #generate children
 
-                #select children for mutation
+                    #select children for mutation
 
-                #evaluate individuals with no fitness
+                    #evaluate individuals with no fitness
 
-                #select survivors
+                    #select survivors
 
 if __name__ == '__main__':
     main()
