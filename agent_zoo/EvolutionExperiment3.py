@@ -3,12 +3,13 @@ import random
 import time
 import copy
 import numpy
+from agent_zoo.weight_writer import weight_writer
 
 from agent_zoo.Eval import Eval
 
 class Individual(object):
 
-    def __init__(self, genome, size, base_weights, weight_map):
+    def __init__(self, genome, size, base_weights, weight_map, genotype=None):
         self.genotype = []
         self.recalc_weight = []
         self.weight_map = weight_map
@@ -19,15 +20,17 @@ class Individual(object):
             self.weights[layer] = numpy.copy(self.base_weights[layer])
         self.size = size
         self.fitness = None
-        for i in range(size):
-            gene = []
-            gene_size = random.randint(0, 2
-
-                                       )
-            for j in range(gene_size):
-                gene.append(genome[random.randint(0, len(genome) - 1)])
-            self.genotype.append(gene)
-            self.recalc_weight.append(True)
+        if genotype is None:
+            for i in range(size):
+                gene = []
+                gene_size = random.randint(0, 2)
+                for j in range(gene_size):
+                    gene.append(genome[random.randint(0, len(genome) - 1)])
+                self.genotype.append(gene)
+                self.recalc_weight.append(True)
+        else:
+            self.genotype = genotype
+            self.recalc_weight = [True for i in range(len(self.genotype))]
 
     def get_weights(self):
         for i in range(self.size):
@@ -40,8 +43,8 @@ class Individual(object):
                 elif len(self.weight_map[i]) == 3:
                     layer, dim1, dim2 = self.weight_map[i]
                     self.weights[layer][dim1][dim2] = self.base_weights[layer][dim1][dim2]
-                    for f in self.genotype[i]:
-                        self.weights[layer][dim1][dim2] = f(self.weights[layer][dim1][dim2])
+                    #for f in self.genotype[i]:
+                    #    self.weights[layer][dim1][dim2] = f(self.weights[layer][dim1][dim2])
                 self.recalc_weight[i] = False
 
 # returns a list individuals that have been selected
@@ -101,6 +104,13 @@ def mutate(individual):
         individual.recalc_weight[index] = True
     individual.fitness = None
 
+def mate(individuals):
+    children = []
+    for indiv in individuals:
+        genotype = copy.deepcopy(indiv.genotype)
+        children.append(Individual(indiv.genome, indiv.size, indiv.base_weights, indiv.weight_map, genotype=genotype))
+    return children
+
 def generate_genome(genome_size):
     genome = []
     for i in range(genome_size):
@@ -110,13 +120,13 @@ def generate_genome(genome_size):
 
 def main():
     seed = 12
-    genome_size = 100
+    genome_size = 10000
     MAX_GEN = 200
     selectionRate = 0.55
-    IND_SIZE = 12488
-    MAX_POPULATION = 10
-    MUTATION_RATE = .35
-    CROSSOVER_RATE = .35
+    IND_SIZE = 128 + 64 + 8
+    MAX_POPULATION = 100
+    MUTATION_RATE = .5
+    CROSSOVER_RATE = .25
 
     random.seed(seed)
     genome = generate_genome(genome_size)
@@ -137,11 +147,11 @@ def main():
             for i in range(shapes[layer][0]):
                 weight_map.append((layer, i))
                 index += 1
-        elif len(shapes[layer]) == 2:
-            for i in range(0, shapes[layer][0]):
-                for j in range(shapes[layer][1]):
-                    weight_map.append((layer, i, j))
-                    index += 1
+        #elif len(shapes[layer]) == 2:
+         #   for i in range(0, shapes[layer][0]):
+         #       for j in range(shapes[layer][1]):
+         #           weight_map.append((layer, i, j))
+         #           index += 1
 
     #generate initial population
     population = [Individual(genome, IND_SIZE, original, weight_map) for i in range(MAX_POPULATION)]
@@ -151,12 +161,11 @@ def main():
     hall_of_fame = []
 
     # base_indiv_fitness = evaluate_individual(original)
-    with open('results.csv', 'w') as writer:
-        with open('timing.csv', 'w') as writer_timing:
+    with open('results.csv', 'w') as writer_results:
+        with open('Elite_Individual_Eperiment3.weights', 'w') as wwriter:
             with open('logEval.csv', 'w') as logger:
                 logger.write('time\n')
-                writer.write('generation, top_fitness\n')
-                writer_timing.write('generation, eval_time, sort_tim, mutation_time, gen_time, avg_get_weight, avg_eval\n')
+                writer_results.write('generation, top_fitness\n')
                 print('Starting evolution')
 
                 for generation in range(MAX_GEN):
@@ -167,7 +176,6 @@ def main():
                     #select individuals for reproduction
                     selected = select_parents(population, CROSSOVER_RATE)
                     #generate children
-"""
                     children = mate(selected)
                     #select children for mutation
                     for child in children:
@@ -179,11 +187,22 @@ def main():
                         if child.fitness is None:
                             child.get_weights()
                             child.fitness = Eval().evaluate_individual(child.weights, logger)
-"""
+
+                    population.extend(children)
+
+                    population = sorted(population, key=lambda x: x.fitness, reverse=True)
+
                     #select survivors
+                    while len(population) > MAX_POPULATION:
+                        population.pop()
+                    result = '{}, {}'.format(generation, population[0].fitness)
+                    print(result)
+                    writer_results.write(result +'\n')
+
+                weight_writer(wwriter, population[0].weights)
 
 
-                    # population = sorted(population, key=lambda x: x.fitness)
+
 
 
 

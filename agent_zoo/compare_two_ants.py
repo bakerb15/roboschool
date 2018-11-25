@@ -8,38 +8,39 @@ config = tf.ConfigProto(
     device_count = { "GPU": 0 } )
 sess = tf.InteractiveSession(config=config)
 
-#sess = tf.Session(config=config)
-
-from RoboschoolWalker2d_v1_2017jul        import ZooPolicyTensorflow as PolWalker
-from RoboschoolHopper_v1_2017jul          import ZooPolicyTensorflow as PolHopper
-from RoboschoolHalfCheetah_v1_2017jul     import ZooPolicyTensorflow as PolHalfCheetah
-from RoboschoolHumanoid_v1_2017jul        import ZooPolicyTensorflow as PolHumanoid1
-from RoboschoolHumanoidFlagrun_v1_2017jul import ZooPolicyTensorflow as PolHumanoid2
 from RoboschoolAnt_v1_2017jul   import ZooPolicyTensorflow as PolAnt
-# HumanoidFlagrun is compatible with normal Humanoid in observations and actions.
 
-possible_participants = [
-     ("RoboschoolAnt-v1", PolAnt),
-   # ("RoboschoolHopper-v1",   PolHopper),
- #   ("RoboschoolWalker2d-v1", PolWalker),
-  #  ("RoboschoolHalfCheetah-v1", PolHalfCheetah),
-  #  ("RoboschoolHumanoid-v1", PolHumanoid1),
-  #  ("RoboschoolHumanoid-v1", PolHumanoid2),
-    ]
 
 stadium = roboschool.scene_stadium.MultiplayerStadiumScene(gravity=9.8, timestep=0.0165/4, frame_skip=4)
 stadium.zero_at_running_strip_start_line = True
-# This example shows inner workings of multiplayer scene, how you can run
-# several robots in one process.
 
 participants = []
-for lane in range(1):
-    env_id, PolicyClass = possible_participants[ np.random.randint(len(possible_participants)) ]
-    env = gym.make(env_id)
-    env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
-    env.unwrapped.player_n = lane   # mutliplayer scenes will also use player_n
-    pi = PolicyClass("mymodel%i" % lane, env.observation_space, env.action_space)
-    participants.append( (env, pi) )
+
+original_weightfile = 'RoboschoolAnt_v1_2017jul.weights'
+original_weights = {}
+evolved_weightfile = 'Elite_Individual_Eperiment3.weights'
+evolved_weights = {}
+
+exec(open(original_weightfile).read(), original_weights)
+exec(open(evolved_weightfile).read(), evolved_weights)
+
+#add original roboschool ant
+lane = 0
+env_id, PolicyClass = ("RoboschoolAnt-v1", PolAnt)
+env = gym.make(env_id)
+env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
+env.unwrapped.player_n = lane
+pi = PolicyClass("mymodel%i" % lane, env.observation_space, env.action_space, original_weights)
+participants.append( (env, pi) )
+
+#add elite individual from experiment
+lane += 2
+env_id, PolicyClass = ("RoboschoolAnt-v1", PolAnt)
+env = gym.make(env_id)
+env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
+env.unwrapped.player_n = lane
+pi = PolicyClass("mymodel%i" % lane, env.observation_space, env.action_space, evolved_weights)
+participants.append( (env, pi) )
 
 episode_n = 0
 video = False
@@ -56,7 +57,7 @@ while 1:
         multi_action = [pi.act(s, None) for s, (env, pi) in zip(multi_state, participants)]
 
         for a, (env, pi) in zip(multi_action, participants):
-            env.unwrapped.apply_action(a)  # action sent in apply_action() must be the same that sent into step(), 
+            env.unwrapped.apply_action(a)  # action sent in apply_action() must be the same that sent into step(),
         # some wrappers will not work
 
         stadium.global_step()
