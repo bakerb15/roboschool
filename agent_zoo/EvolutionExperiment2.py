@@ -114,7 +114,7 @@ def main():
     MAX_GEN = 200
     selectionRate = 0.55
     IND_SIZE = 12488
-    MAX_POPULATION = 1
+    MAX_POPULATION = 10
     MUTATION_RATE = .35
     CROSSOVER_RATE = .35
 
@@ -167,6 +167,7 @@ def main():
                     #select individuals for reproduction
                     selected = select_parents(population, CROSSOVER_RATE)
                     #generate children
+"""
                     children = mate(selected)
                     #select children for mutation
                     for child in children:
@@ -178,7 +179,7 @@ def main():
                         if child.fitness is None:
                             child.get_weights()
                             child.fitness = Eval().evaluate_individual(child.weights, logger)
-
+"""
                     #select survivors
 
 
