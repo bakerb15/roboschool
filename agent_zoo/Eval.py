@@ -78,9 +78,11 @@ class Eval(object):
                 frame += 1
                 # stadium.cpp_world.test_window_score("%04i" % frame)
                 # if not still_open: break
-                if frame == 50:
+                if frame == 200:
                     inProgress = False
-                    fitness = participants[0][0].unwrapped.body_xyz[0]
+                    fitnessx = participants[0][0].unwrapped.body_xyz[0]
+                    fitnessy = participants[0][0].unwrapped.body_xyz[1]
+                    fitness = fitnessx - abs(fitnessy)
                     break
 
             #if video: video_recorder.close()

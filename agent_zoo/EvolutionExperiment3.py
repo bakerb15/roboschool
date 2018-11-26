@@ -30,7 +30,7 @@ class Individual(object):
                 self.recalc_weight.append(True)
         else:
             self.genotype = genotype
-            self.recalc_weight = [True for i in range(len(self.genotype))]
+            self.recalc_weight = [True for i in range(size)]
 
     def get_weights(self):
         for i in range(self.size):
@@ -121,12 +121,12 @@ def generate_genome(genome_size):
 def main():
     seed = 12
     genome_size = 10000
-    MAX_GEN = 200
+    MAX_GEN = 500
     selectionRate = 0.55
     IND_SIZE = 128 + 64 + 8
-    MAX_POPULATION = 100
-    MUTATION_RATE = .5
-    CROSSOVER_RATE = .25
+    MAX_POPULATION = 20
+    MUTATION_RATE = .75
+    CROSSOVER_RATE = .75
 
     random.seed(seed)
     genome = generate_genome(genome_size)
@@ -198,6 +198,9 @@ def main():
                     result = '{}, {}'.format(generation, population[0].fitness)
                     print(result)
                     writer_results.write(result +'\n')
+
+                    #add back original
+                    population.append(Individual(genome, IND_SIZE, original, weight_map, genotype=[[] for i in range(genome_size)]))
 
                 weight_writer(wwriter, population[0].weights)
 
