@@ -30,7 +30,7 @@ env_id, PolicyClass = ("RoboschoolAnt-v1", PolAnt)
 env = gym.make(env_id)
 env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
 env.unwrapped.player_n = lane
-pi = PolicyClass("mymodel%i" % lane, env.observation_space, env.action_space, original_weights)
+pi = PolicyClass("Originalmodel%i" % lane, env.observation_space, env.action_space, original_weights)
 participants.append( (env, pi) )
 
 #add elite individual from experiment
@@ -39,7 +39,7 @@ env_id, PolicyClass = ("RoboschoolAnt-v1", PolAnt)
 env = gym.make(env_id)
 env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
 env.unwrapped.player_n = lane
-pi = PolicyClass("mymodel%i" % lane, env.observation_space, env.action_space, evolved_weights)
+pi = PolicyClass("Evolvedmodel%i" % lane, env.observation_space, env.action_space, evolved_weights)
 participants.append( (env, pi) )
 
 episode_n = 0
