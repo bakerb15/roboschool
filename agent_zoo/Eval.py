@@ -12,7 +12,7 @@ class Eval(object):
     def __init__(self):
         pass
 
-    def evaluate_individual(self, weights, logger):
+    def evaluate_individual(self, max_frame, weights, logger):
         config = tf.ConfigProto(
             inter_op_parallelism_threads=1,
             intra_op_parallelism_threads=1,
@@ -45,13 +45,11 @@ class Eval(object):
         episode_n = 0
         video = False
         inProgress = True
-
         while inProgress:
             stadium.episode_restart()
             episode_n += 1
-
-            multi_state = [env.reset() for env, _ in participants]
             frame = 0
+            multi_state = [env.reset() for env, _ in participants]
             restart_delay = 0
 
             #if video: video_recorder = gym.monitoring.video_recorder.VideoRecorder(env=participants[0][0], base_path=("/tmp/demo_race_episode%i" % self.episode_n), enabled=True)
@@ -72,17 +70,19 @@ class Eval(object):
 
                 #if video: video_recorder.capture_frame()
 
-                if sum(multi_done)==len(multi_done):
-                    break
+                #if sum(multi_done)==len(multi_done):
+                #   break
 
                 frame += 1
+
                 # stadium.cpp_world.test_window_score("%04i" % frame)
                 # if not still_open: break
-                if frame == 200:
+                if frame == max_frame:
                     inProgress = False
                     fitnessx = participants[0][0].unwrapped.body_xyz[0]
-                    fitnessy = participants[0][0].unwrapped.body_xyz[1]
-                    fitness = fitnessx - abs(fitnessy)
+                    fitness = fitnessx
+                    #fitnessy = participants[0][0].unwrapped.body_xyz[1]
+                    #fitness = fitnessx - abs(fitnessy)
                     break
 
             #if video: video_recorder.close()

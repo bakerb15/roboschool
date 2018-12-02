@@ -8,13 +8,25 @@ from agent_zoo.weight_writer import weight_writer
 
 from agent_zoo.Eval import Eval
 
-HIGH = 2.0
-LOW = -2.0
+#B4
+HIGH = 2
+LOW = .1
 SEED = 12
 MAX_GEN = 100
-MAX_POPULATION = 100
-CLONE_RATE = .5
-MAX_FRAME = 300  # how many frames is the robot simulated for
+MAX_POPULATION = 50
+CLONE_RATE = .10
+CLONES = int(.05 * MAX_POPULATION)
+MAX_FRAME = 200  # how many frames is the robot simulated for
+
+# #B3
+# HIGH = 5
+# LOW = -5
+# SEED = 12
+# MAX_GEN = 1000
+# MAX_POPULATION = 30
+# CLONE_RATE = .05
+# CLONES = int(.5 * MAX_POPULATION)
+# MAX_FRAME = 50  # how many frames is the robot simulated for
 
 class Individual(object):
 
@@ -78,7 +90,8 @@ def mutate(individual):
 def clone(individuals):
     clones = []
     for indiv in individuals:
-        clones.append(Individual(indiv.svd_dic, copy.deepcopy(indiv.genotype)))
+        for i in range(CLONES):
+            clones.append(Individual(indiv.svd_dic, copy.deepcopy(indiv.genotype)))
     return clones
 
 def main():
@@ -106,8 +119,8 @@ def main():
 
     print('Starting evolution')
     # base_indiv_fitness = evaluate_individual(original)
-    with open('resultsb.csv', 'w') as writer_results:
-        with open('Elite_Individual_Experiment5c.weights', 'w') as wwriter:
+    with open('resultsB4b.csv', 'w') as writer_results:
+        with open('Elite_Individual_ExperimentB4.weights', 'w') as wwriter:
             with open('logEvalb.csv', 'w') as logger:
                 logger.write('time\n')
                 header = 'generation, run_time, avg_fitness, top_fitness'
@@ -158,6 +171,7 @@ def main():
                         indiv.fitness = None
 
                 weight_writer(wwriter, population[0].get_weights())
+                logger.write(str(population[0].genotype)+'\n')
 
 
 

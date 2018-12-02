@@ -10,6 +10,8 @@ sess = tf.InteractiveSession(config=config)
 
 from RoboschoolAnt_v1_2017jul   import ZooPolicyTensorflow as PolAnt
 
+PRINT_WEIGHTS = True
+INDIV_SIZE = 12488
 
 stadium = roboschool.scene_stadium.MultiplayerStadiumScene(gravity=9.8, timestep=0.0165/4, frame_skip=4)
 stadium.zero_at_running_strip_start_line = True
@@ -18,7 +20,7 @@ participants = []
 
 original_weightfile = 'RoboschoolAnt_v1_2017jul.weights'
 original_weights = {}
-evolved_weightfile = 'Elite_Individual_Eperiment3.weights'
+evolved_weightfile = 'Elite_Individual_ExperimentB3.weights'
 evolved_weights = {}
 
 exec(open(original_weightfile).read(), original_weights)
@@ -30,7 +32,8 @@ env_id, PolicyClass = ("RoboschoolAnt-v1", PolAnt)
 env = gym.make(env_id)
 env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
 env.unwrapped.player_n = lane
-pi = PolicyClass("Originalmodel%i" % lane, env.observation_space, env.action_space, original_weights)
+name1 = "OriginalModel"
+pi = PolicyClass("{}".format(name1), env.observation_space, env.action_space, original_weights)
 participants.append( (env, pi) )
 
 #add elite individual from experiment
@@ -39,8 +42,37 @@ env_id, PolicyClass = ("RoboschoolAnt-v1", PolAnt)
 env = gym.make(env_id)
 env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
 env.unwrapped.player_n = lane
-pi = PolicyClass("Evolvedmodel%i" % lane, env.observation_space, env.action_space, evolved_weights)
+name2 = "EvolvedModelB"
+pi = PolicyClass("{}".format(name2), env.observation_space, env.action_space, evolved_weights)
 participants.append( (env, pi) )
+
+if PRINT_WEIGHTS:
+    layerNames = ['weights_dense1_w', 'weights_dense1_b', 'weights_dense2_w', 'weights_dense2_b', 'weights_final_w',
+                  'weights_final_b']
+    shapes = {}
+    for layer in layerNames:
+        shapes[layer] = original_weights[layer].shape
+    orig = []
+    evol = []
+    for layer in layerNames:
+        if len(shapes[layer]) == 2:
+            for l in  original_weights[layer]:
+                for w in l:
+                    orig.append(w)
+            for l in evolved_weights[layer]:
+                for w in l:
+                    evol.append(w)
+        else:
+            for w in  original_weights[layer]:
+                orig.append(w)
+            for w in evolved_weights[layer]:
+                evol.append(w)
+    file_name = 'weightComparison_{}_vs_{}.csv'.format(name1, name2)
+    with open(file_name, 'w') as writer:
+        writer.write('{}, {}, {}\n'.format('weight_index', name1, name2))
+        index = 0
+        for i in range(INDIV_SIZE):
+            writer.write('{}, {}, {}\n'.format(str(i), str(orig[i]), str(evol[i])))
 
 episode_n = 0
 video = False

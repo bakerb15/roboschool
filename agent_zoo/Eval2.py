@@ -80,7 +80,10 @@ class Eval2(object):
                 # if not still_open: break
                 if frame == max_frame:
                     inProgress = False
-                    fitness =  participants[0][0].unwrapped.reward
+                    #fitness =  participants[0][0].unwrapped.reward
+                    fitnessx = participants[0][0].unwrapped.body_xyz[0]
+                    fitnessy = participants[0][0].unwrapped.body_xyz[1]
+                    fitness = fitnessx - abs(fitnessy)
                     break
 
             #if video: video_recorder.close()
