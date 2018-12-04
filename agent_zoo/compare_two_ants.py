@@ -20,7 +20,7 @@ participants = []
 
 original_weightfile = 'RoboschoolAnt_v1_2017jul.weights'
 original_weights = {}
-evolved_weightfile = 'Elite_Individual_ExperimentB3.weights'
+evolved_weightfile = 'Elite_Individual_ExperimentA3.weights'
 evolved_weights = {}
 
 exec(open(original_weightfile).read(), original_weights)
@@ -42,7 +42,7 @@ env_id, PolicyClass = ("RoboschoolAnt-v1", PolAnt)
 env = gym.make(env_id)
 env.unwrapped.scene = stadium   # if you set scene before first reset(), it will be used.
 env.unwrapped.player_n = lane
-name2 = "EvolvedModelB"
+name2 = "EvolvedModelA3"
 pi = PolicyClass("{}".format(name2), env.observation_space, env.action_space, evolved_weights)
 participants.append( (env, pi) )
 
@@ -106,7 +106,8 @@ while 1:
         frame += 1
         stadium.cpp_world.test_window_score("%04i" % frame)
         if not still_open: break
-        if frame==1000: break
+        #if frame==1000: break
+        if frame == 200: break
     if video: video_recorder.close()
     if not still_open: break
 

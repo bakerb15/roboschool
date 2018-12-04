@@ -8,18 +8,65 @@ import math
 from agent_zoo.Eval import Eval
 from agent_zoo.weight_writer import weight_writer
 
+
+
+#NAME = 'A2'
+# SEED = 12
+# GENOME_SIZE = 100000
+# MAX_GEN = 200
+# #SELECTION_RATE = 0.55
+# IND_SIZE = 12488
+# MAX_POPULATION = 20
+# MUTATION_RATE = .35
+# CROSSOVER_RATE = .15
+# MAX_FRAME = 150
+# LOW, HIGH = -2, 2
+# MAX_GENE_INIT = 10
+# MAX_GENE_LENGTH = 35
+
+
+NAME = 'A3'
 SEED = 12
-GENOME_SIZE = 1000000
+GENOME_SIZE = 100000
 MAX_GEN = 200
-#SELECTION_RATE = 0.55
 IND_SIZE = 12488
 MAX_POPULATION = 20
 MUTATION_RATE = .35
 CROSSOVER_RATE = .15
 MAX_FRAME = 150
-LOW, HIGH = -2, 2
-MAX_GENE_INIT = 10
-MAX_GENE_LENGTH = 35
+LOW_MUL, HIGH_MUL = 0.99, 1.01
+LOW_ADD, HIGH_ADD = -0.1, 0.1
+MIN_GENE_INIT, MAX_GENE_INIT = 0 , 10
+MAX_GENE_LENGTH = 50
+
+
+# NAME = 'A4'
+# SEED = 12
+# GENOME_SIZE = 100000
+# MAX_GEN = 100
+# IND_SIZE = 12488
+# MAX_POPULATION = 25
+# MUTATION_RATE = .65
+# CROSSOVER_RATE = .25
+# MAX_FRAME = 200
+# LOW_MUL, HIGH_MUL = 0.9, 1.1
+# LOW_ADD, HIGH_ADD = -0.1, 0.1
+# MIN_GENE_INIT, MAX_GENE_INIT = 40, 50
+# MAX_GENE_LENGTH = 100
+
+# NAME = 'ExperB'
+# SEED = 12
+# GENOME_SIZE = 100000
+# MAX_GEN = 50
+# IND_SIZE = 12488
+# MAX_POPULATION = 1
+# MUTATION_RATE = .0
+# CROSSOVER_RATE = .0
+# MAX_FRAME = 200
+# LOW_MUL, HIGH_MUL = 0.9, 1.1
+# LOW_ADD, HIGH_ADD = -0.1, 0.1
+# MIN_GENE_INIT, MAX_GENE_INIT = 0, 0
+# MAX_GENE_LENGTH = 0
 
 class Individual(object):
 
@@ -37,7 +84,7 @@ class Individual(object):
         if genotype is None:
             for i in range(size):
                 gene = []
-                gene_size = random.randint(0, MAX_GENE_INIT)
+                gene_size = random.randint(MIN_GENE_INIT, MAX_GENE_INIT)
                 for j in range(gene_size):
                     gene.append(genome[random.randint(0, len(genome) - 1)])
                 self.genotype.append(gene)
@@ -93,27 +140,15 @@ def random_gene(genome):
 
 def randfunc():
     dice = random.randint(0, 99) % 2
-    y = random.uniform(-2, 2)
     if dice == 0:
-        y = random.uniform(LOW, HIGH)
+        y = random.uniform(LOW_ADD, HIGH_ADD)
         def f(x):
             return x + y
         return f
     elif dice == 1:
-        y = random.uniform(LOW, HIGH)
+        y = random.uniform(LOW_MUL, HIGH_MUL)
         def f(x):
             return x * y
-        return f
-    elif dice == 2:
-        y = random.uniform(LOW, HIGH)
-        def f(x):
-            if x < 0:
-                z = math.pow(math.fabs(x), y)
-                return -1 * z
-            elif x == 0:
-                return 0
-            else:
-                return math.pow(x, y)
         return f
 
 def mutate(individual):
@@ -146,12 +181,11 @@ def mate(individuals):
         mate = individuals[random.randint(0, len(individuals) -1)]
         genotype_ref = []
         coin = random.randint(0,99) % 2
-        for index in range(indiv.size):
-            if coin == 0:
-                #use parent 1
-                genotype_ref.append(indiv.genotype[index])
-            else:
-                genotype_ref.append(mate.genotype[index])
+        crossover_point = random.randint(0, indiv.size - 1)
+        for index in range(crossover_point):
+            genotype_ref.append(indiv.genotype[index])
+        for index in range(crossover_point, indiv.size):
+            genotype_ref.append(mate.genotype[index])
         children.append(Individual(indiv.genome, indiv.size, indiv.base_weights, indiv.weight_map, genotype_ref))
     return children
 
@@ -177,17 +211,20 @@ def select_survivors(population):
             if indiv not in surv_dic and indiv.fitness is not None:
                 survivors.append(indiv)
                 surv_dic[indiv] = True
+                if len(survivors) >= MAX_POPULATION:
+                    break
 
-    population = survivors
+    return survivors
 
 
 
 def main():
 
-
+    start_time = time.process_time()
     random.seed(SEED)
     genome = generate_genome(GENOME_SIZE)
-    weightfile = 'RoboschoolAnt_v1_2017jul.weights'
+    #weightfile = 'RoboschoolAnt_v1_2017jul.weights'
+    weightfile = 'Elite_Individual_ExperimentB.weights'
     original = {}
     exec(open(weightfile).read(), original)
     layerNames = ['weights_dense1_w', 'weights_dense1_b', 'weights_dense2_w', 'weights_dense2_b', 'weights_final_w',
@@ -216,16 +253,15 @@ def main():
 
 
     # base_indiv_fitness = evaluate_individual(original)
-    with open('ExperimentA2_results.csv', 'w') as writer:
-        with open('ExperimentA2_logEval.csv', 'w') as logger:
+    with open('Experiment{}_results.csv'.format(NAME), 'w') as writer:
+        with open('logEval.csv', 'w') as logger:
             logger.write('time\n')
             writer.write('generation, avg, fitness, top_fitness\n')
             print('Starting evolution')
 
             for generation in range(MAX_GEN):
                 for indiv in population:
-                    if indiv.fitness is None:
-                        indiv.fitness = Eval().evaluate_individual(MAX_FRAME, indiv.get_weights(), logger)
+                    indiv.fitness = Eval().evaluate_individual(MAX_FRAME, indiv.get_weights(), logger)
                 #select individuals for reproduction
                 selected = select_parents(population, CROSSOVER_RATE)
                 #generate children
@@ -238,13 +274,11 @@ def main():
 
                 #evaluate children
                 for child in children:
-                    if child.fitness is None:
-                        child.get_weights()
-                        child.fitness = Eval().evaluate_individual(MAX_FRAME, child.get_weights(), logger)
+                    child.fitness = Eval().evaluate_individual(MAX_FRAME, child.get_weights(), logger)
 
                 population.extend(children)
                 # select survivors
-                select_survivors(population)
+                population = select_survivors(population)
 
 
                 population = sorted(population, key=lambda x: x.fitness, reverse=True)
@@ -258,9 +292,11 @@ def main():
                 print(results)
                 writer.write(results + '\n')
 
-    with open('Elite_Individual_ExperimentA2.weights', 'w') as wwriter:
+    with open('Elite_Individual_Experiment{}.weights'.format(NAME), 'w') as wwriter:
         weight_writer(wwriter, population[0].get_weights())
 
+    total_time = time.process_time() - start_time
+    print('RunTime: {}'.format(str(total_time)))
 
 
 
