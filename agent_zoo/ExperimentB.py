@@ -8,13 +8,13 @@ from agent_zoo.weight_writer import weight_writer
 
 from agent_zoo.Eval import Eval
 
-#B4
-HIGH = 2
-LOW = .1
+NAME = 'B5'
+HIGH = 1.5
+LOW = .5
 SEED = 12
 MAX_GEN = 100
-MAX_POPULATION = 50
-CLONE_RATE = .10
+MAX_POPULATION = 20
+CLONE_RATE = .1
 CLONES = int(.05 * MAX_POPULATION)
 MAX_FRAME = 200  # how many frames is the robot simulated for
 
@@ -85,8 +85,8 @@ def select_parents(population, selection_rate):
 
 def mutate(individual):
     index = random.randint(0, len(individual.genotype) -1)
-    individual.genotype[index] = random.uniform(LOW, HIGH) * individual.genotype[index]
-
+    # individual.genotype[index] = random.uniform(LOW, HIGH) * individual.genotype[index]
+    individual.genotype[index] = random.uniform(LOW, HIGH)
 def clone(individuals):
     clones = []
     for indiv in individuals:
@@ -95,6 +95,7 @@ def clone(individuals):
     return clones
 
 def main():
+    start_time = time.process_time()
     random.seed(SEED)
 
     weightfile = 'RoboschoolAnt_v1_2017jul.weights'
@@ -119,59 +120,61 @@ def main():
 
     print('Starting evolution')
     # base_indiv_fitness = evaluate_individual(original)
-    with open('resultsB4b.csv', 'w') as writer_results:
-        with open('Elite_Individual_ExperimentB4.weights', 'w') as wwriter:
-            with open('logEvalb.csv', 'w') as logger:
-                logger.write('time\n')
-                header = 'generation, run_time, avg_fitness, top_fitness'
-                print(header)
-                writer_results.write(header + '\n')
+    with open('Experiment{}_results.csv'.format(NAME), 'w') as writer_results:
+        with open('logEvalb.csv', 'w') as logger:
+            logger.write('time\n')
+            header = 'generation, run_time, avg_fitness, top_fitness'
+            print(header)
+            writer_results.write(header + '\n')
 
 
-                for generation in range(MAX_GEN):
-                    start = time.process_time()
-                    for indiv in population:
-                        if indiv.fitness is None:
-                            indiv.fitness = Eval().evaluate_individual(MAX_FRAME, indiv.get_weights(), logger)
-                    #select individuals for reproduction
-                    selected = select_parents(population, CLONE_RATE)
-                    #generate children
-                    children = clone(selected)
+            for generation in range(MAX_GEN):
+                start = time.process_time()
+                for indiv in population:
+                    if indiv.fitness is None:
+                        indiv.fitness = Eval().evaluate_individual(MAX_FRAME, indiv.get_weights(), logger)
+                #select individuals for reproduction
+                selected = select_parents(population, CLONE_RATE)
+                #generate children
+                children = clone(selected)
 
-                    for child in children:
-                        mutate(child)
-                    #evaluate children
-                    for child in children:
-                        if child.fitness is None:
-                            child.fitness = Eval().evaluate_individual(MAX_FRAME, child.get_weights(), logger)
+                for child in children:
+                    mutate(child)
+                #evaluate children
+                for child in children:
+                    if child.fitness is None:
+                        child.fitness = Eval().evaluate_individual(MAX_FRAME, child.get_weights(), logger)
 
-                    population.extend(children)
+                population.extend(children)
 
-                    population = sorted(population, key=lambda x: x.fitness, reverse=True)
+                population = sorted(population, key=lambda x: x.fitness, reverse=True)
 
-                    survivors_indices = [random.randint(3, len(population) -1) for i in range(MAX_POPULATION -1)]
-                    survivors = []
-                    survivors.append(population[0])
-                    survivors.append(population[1])
-                    survivors.append(population[2])
-                    for index in survivors_indices:
-                        survivors.append(population[index])
+                survivors_indices = [random.randint(3, len(population) -1) for i in range(MAX_POPULATION -1)]
+                survivors = []
+                survivors.append(population[0])
+                survivors.append(population[1])
+                survivors.append(population[2])
+                for index in survivors_indices:
+                    survivors.append(population[index])
 
-                    population = survivors
+                population = survivors
 
-                    total_fitness = 0
-                    for indiv in population:
-                        total_fitness += indiv.fitness
-                    avg_fitness = total_fitness/len(population)
-                    run_time = time.process_time() - start
-                    result = '{}, {}, {}, {}'.format(generation, run_time, avg_fitness, population[0].fitness)
-                    print(result)
-                    writer_results.write(result +'\n')
-                    for indiv in population:
-                        indiv.fitness = None
+                total_fitness = 0
+                for indiv in population:
+                    total_fitness += indiv.fitness
+                avg_fitness = total_fitness/len(population)
+                run_time = time.process_time() - start
+                result = '{}, {}, {}, {}'.format(generation, run_time, avg_fitness, population[0].fitness)
+                print(result)
+                writer_results.write(result +'\n')
+                for indiv in population:
+                    indiv.fitness = None
 
-                weight_writer(wwriter, population[0].get_weights())
-                logger.write(str(population[0].genotype)+'\n')
+            with open('Elite_Individual_Experiment{}.weights'.format(NAME), 'w') as wrt:
+                weight_writer(wrt, population[0].get_weights())
+
+            total_time = time.process_time() - start_time
+            print('RunTime: {}'.format(str(total_time)))
 
 
 

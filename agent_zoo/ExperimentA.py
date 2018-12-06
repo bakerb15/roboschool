@@ -25,20 +25,34 @@ from agent_zoo.weight_writer import weight_writer
 # MAX_GENE_LENGTH = 35
 
 
-NAME = 'A3'
+# NAME = 'A3'
+# SEED = 12
+# GENOME_SIZE = 100000
+# MAX_GEN = 200
+# IND_SIZE = 12488
+# MAX_POPULATION = 20
+# MUTATION_RATE = .35
+# CROSSOVER_RATE = .15
+# MAX_FRAME = 150
+# LOW_MUL, HIGH_MUL = 0.99, 1.01
+# LOW_ADD, HIGH_ADD = -0.1, 0.1
+# MIN_GENE_INIT, MAX_GENE_INIT = 0 , 10
+# MAX_GENE_LENGTH = 50
+
+NAME = 'A5'
 SEED = 12
 GENOME_SIZE = 100000
-MAX_GEN = 200
+MAX_GEN = 50
 IND_SIZE = 12488
-MAX_POPULATION = 20
+MAX_POPULATION = 50
 MUTATION_RATE = .35
 CROSSOVER_RATE = .15
-MAX_FRAME = 150
+MAX_FRAME = 200
 LOW_MUL, HIGH_MUL = 0.99, 1.01
 LOW_ADD, HIGH_ADD = -0.1, 0.1
 MIN_GENE_INIT, MAX_GENE_INIT = 0 , 10
 MAX_GENE_LENGTH = 50
-
+NUM_OF_EVALS = 4
 
 # NAME = 'A4'
 # SEED = 12
@@ -261,7 +275,10 @@ def main():
 
             for generation in range(MAX_GEN):
                 for indiv in population:
-                    indiv.fitness = Eval().evaluate_individual(MAX_FRAME, indiv.get_weights(), logger)
+                    indiv.fitness = 0
+                    for i in range(NUM_OF_EVALS):
+                        indiv.fitness += Eval().evaluate_individual(MAX_FRAME, indiv.get_weights(), logger)
+                    indiv.fitness = indiv.fitness / NUM_OF_EVALS
                 #select individuals for reproduction
                 selected = select_parents(population, CROSSOVER_RATE)
                 #generate children
@@ -274,8 +291,10 @@ def main():
 
                 #evaluate children
                 for child in children:
-                    child.fitness = Eval().evaluate_individual(MAX_FRAME, child.get_weights(), logger)
-
+                    child.fitness = 0
+                    for i in range(NUM_OF_EVALS):
+                        child.fitness += Eval().evaluate_individual(MAX_FRAME, child.get_weights(), logger)
+                    child.fitness = child.fitness/ NUM_OF_EVALS
                 population.extend(children)
                 # select survivors
                 population = select_survivors(population)
